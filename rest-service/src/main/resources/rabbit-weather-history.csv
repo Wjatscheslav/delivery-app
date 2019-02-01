@@ -1,0 +1,11 @@
+date;temperaturemin;temperaturemax;precipitation;snowfall;snowdepth;avgwindspeed;fastest2minwinddir;fastest2minwindspeed;fastest5secwinddir;fastest5secwindspeed;fog;fogheavy;mist;rain;fogground;ice;glaze;drizzle;snow;freezingrain;smokehaze;thunder;highwind;hail;blowingsnow;dust;freezingfog
+2011-06-10;72.0;96.1;0.0;0.0;0.0;7.38;140;12.97;80;31.99;No;No;No;Yes;No;No;No;No;No;No;No;Yes;No;No;No;No;No
+2011-06-12;66.9;93.9;0.24;0.0;0.0;5.59;300;23.04;310;34.9;Yes;No;Yes;Yes;No;No;No;No;No;No;No;Yes;No;No;No;No;No
+2011-06-16;68.0;91.0;0.0;0.0;0.0;8.5;230;19.91;200;23.94;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-06-17;66.9;91.9;0.0;0.0;0.0;4.92;230;14.99;150;31.09;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-06-24;72.0;96.1;0.02;0.0;0.0;11.41;230;21.92;240;31.99;No;No;No;Yes;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-07-01;64.9;93.0;0.0;0.0;0.0;3.13;30;14.09;30;19.91;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-07-06;73.0;89.1;0.22;0.0;0.0;6.26;220;21.92;220;25.95;Yes;No;No;Yes;No;No;No;No;No;No;Yes;Yes;No;No;No;No;No
+2011-07-14;69.1;87.1;0.0;0.0;0.0;8.72;50;17.0;50;23.04;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-07-16;63.0;89.1;0.0;0.0;0.0;6.04;100;12.97;140;19.91;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2011-07-17;68.0;88.0;0.0;0.0;0.0;2.68;200;8.95;120;14.09;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No

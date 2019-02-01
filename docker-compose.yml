@@ -1,0 +1,88 @@
+version: '2'
+
+services:
+
+  rabbitmq:
+    build:
+      context: rabbitmq/
+    hostname: "rabbitmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - "./rabbitmq/config/rabbitmq.yml:/usr/share/rabbitmq/config/rabbitmq.yml:ro"
+    networks:
+      - delivery
+
+  redis:
+    build:
+      context: redis/
+    hostname: "redis"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/config/redis.yml:/usr/share/redis/config/redis.yml:ro
+    networks:
+      - delivery
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+    volumes:
+    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+    - "9200:9200"
+    - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+    - delivery
+
+  kibana:
+    build:
+      context: kibana/
+    volumes:
+    - ./kibana/config/:/usr/share/kibana/config:ro
+    ports:
+    - "5601:5601"
+    networks:
+    - delivery
+    depends_on:
+    - elasticsearch
+
+  postgres:
+    build:
+      context: postgres/
+    volumes:
+    - ./postgres/config/:/usr/share/postgres/config:ro
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: delivery
+
+  ftp:
+    build:
+      context: ftp/
+    container_name: pure-ftpd
+    ports:
+    - "21:21"
+    - "30000-30009:30000-30009"
+    volumes:
+    - ./ftp/config/:/usr/share/ftp/config:ro
+    environment:
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: ftpuser
+      FTP_USER_PASS: ftppass
+      FTP_USER_HOME: /Users/viacheslav/ftpuser
+
+networks:
+  delivery:
+    driver: bridge

@@ -1,0 +1,11 @@
+date;temperaturemin;temperaturemax;precipitation;snowfall;snowdepth;avgwindspeed;fastest2minwinddir;fastest2minwindspeed;fastest5secwinddir;fastest5secwindspeed;fog;fogheavy;mist;rain;fogground;ice;glaze;drizzle;snow;freezingrain;smokehaze;thunder;highwind;hail;blowingsnow;dust;freezingfog
+2015-06-12;71.1;90.0;0.0;0.0;0.0;8.05;230;18.12;230;21.92;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-06-15;72.0;99.0;0.0;0.0;0.0;3.13;250;10.07;30;16.11;Yes;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-06-19;72.0;95.0;0.23;0.0;0.0;4.7;100;14.09;110;19.91;Yes;No;No;No;No;No;No;No;No;No;No;Yes;No;No;No;No;No
+2015-06-21;73.0;95.0;0.0;0.0;0.0;6.49;230;14.99;260;19.91;Yes;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-06-27;70.0;88.0;0.99;0.0;0.0;8.28;210;18.12;210;29.97;Yes;No;No;No;No;No;No;No;No;No;No;Yes;No;No;No;No;No
+2015-06-29;60.1;88.0;0.0;0.0;0.0;3.8;50;12.97;120;17.0;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-07-05;69.1;90.0;0.79;0.0;0.0;6.04;240;29.08;230;44.96;Yes;No;No;No;No;No;No;No;No;No;No;Yes;No;No;No;No;No
+2015-07-07;70.0;91.0;0.0;0.0;0.0;6.26;230;14.09;240;18.12;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-07-10;73.0;93.9;0.0;0.0;0.0;4.92;250;12.97;250;17.0;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No;No
+2015-07-18;73.9;93.0;0.02;0.0;0.0;7.61;190;14.09;320;21.03;No;No;No;No;No;No;No;No;No;No;No;Yes;No;No;No;No;No
