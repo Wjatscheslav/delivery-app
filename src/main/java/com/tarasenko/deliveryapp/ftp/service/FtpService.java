@@ -1,6 +1,5 @@
 package com.tarasenko.deliveryapp.ftp.service;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class FtpService
         weatherForecastRedisService.saveWeatherForecast(jsonNodeEl.asText());
       }
     }
-    catch (IOException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
