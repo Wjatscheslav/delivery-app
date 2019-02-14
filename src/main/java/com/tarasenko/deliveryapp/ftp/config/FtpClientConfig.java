@@ -3,13 +3,15 @@ package com.tarasenko.deliveryapp.ftp.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import com.tarasenko.deliveryapp.common.Config;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Configuration
 @Getter
 @Setter
-public class FtpClientConfig
+public class FtpClientConfig implements Config
 {
 
   @Value("${ftp.host}")

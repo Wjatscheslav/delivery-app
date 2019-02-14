@@ -3,6 +3,8 @@ package com.tarasenko.deliveryapp.ftp.service;
 import java.io.InputStream;
 
 import org.apache.commons.net.ftp.FTPFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import com.tarasenko.deliveryapp.redis.service.WeatherForecastRedisService;
 @Service
 public class FtpService
 {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(FtpService.class);
 
   private final FtpClientProvider ftpClientProvider;
   private final FtpClientConfig ftpClientConfig;
@@ -31,6 +35,7 @@ public class FtpService
 
   public void ftpToRedis()
   {
+    LOGGER.debug("Start saving data from ftp to redis " + ftpClientConfig.toJsonString());
     var ftpClient = ftpClientProvider.getFtpClient();
     try
     {
@@ -49,10 +54,11 @@ public class FtpService
           weatherForecastRedisService.saveWeatherForecast(jsonNodeEl.asText());
         }
       }
+      LOGGER.debug("Data was successfully saved into redis " + ftpClientConfig.toJsonString());
     }
     catch (Exception e)
     {
-      e.printStackTrace();
+      LOGGER.error("Error occurred during saving data from FTP to redis " + ftpClientConfig.toJsonString());
     }
   }
 

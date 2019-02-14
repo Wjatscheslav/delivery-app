@@ -2,6 +2,8 @@ package com.tarasenko.deliveryapp.rabbitmq.service;
 
 import java.nio.charset.StandardCharsets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.tarasenko.deliveryapp.redis.service.WeatherForecastRedisService;
 public class WeatherForecastRabbitSubscriber
 {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(WeatherForecastRabbitSubscriber.class);
+
   private final WeatherForecastRedisService weatherForecastRedisService;
   private final RabbitMqConfig rabbitMqConfig;
 
@@ -30,6 +34,7 @@ public class WeatherForecastRabbitSubscriber
   }
 
   public void subscribe() throws Exception {
+    LOGGER.debug("Start subscribing to queue " + rabbitMqConfig.toJsonString());
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost(rabbitMqConfig.getHost());
     factory.setPort(rabbitMqConfig.getPort());
@@ -43,12 +48,14 @@ public class WeatherForecastRabbitSubscriber
     channel.queueBind(queueName, rabbitMqConfig.getExchangeName(), "");
 
     DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+      LOGGER.debug("New data was published to the queue " + rabbitMqConfig.toJsonString());
       String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
       JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
       weatherForecastRedisService.saveWeatherForecast(jsonObject.toString());
+      LOGGER.debug("Data was successfully saved to redis " + rabbitMqConfig.toJsonString());
     };
     channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
-
+    LOGGER.debug("Successfully subscribed to queue " + rabbitMqConfig.toJsonString());
   }
 
 }

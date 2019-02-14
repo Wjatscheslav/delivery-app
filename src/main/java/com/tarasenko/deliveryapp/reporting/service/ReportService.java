@@ -18,13 +18,11 @@ import com.tarasenko.deliveryapp.ftp.service.FtpService;
 import com.tarasenko.deliveryapp.postgres.PostgresService;
 import com.tarasenko.deliveryapp.redis.service.WeatherForecastRedisService;
 import com.tarasenko.deliveryapp.reporting.config.ReportingConfig;
-import com.tarasenko.deliveryapp.rest.service.RestService;
 
 @Service
 public class ReportService
 {
 
-  private final RestService restService;
   private final PostgresService postgresService;
   private final WeatherForecastRedisService weatherForecastRedisService;
   private final MessageService messageService;
@@ -33,12 +31,11 @@ public class ReportService
   private final FtpService ftpService;
 
   @Autowired
-  public ReportService(RestService restService, PostgresService postgresService,
+  public ReportService(PostgresService postgresService,
                        WeatherForecastRedisService weatherForecastRedisService, MessageService messageService,
                        ReportingConfig reportingConfig, ElasticsearchService elasticsearchService,
                        FtpService ftpService)
   {
-    this.restService = restService;
     this.postgresService = postgresService;
     this.weatherForecastRedisService = weatherForecastRedisService;
     this.messageService = messageService;
@@ -77,7 +74,6 @@ public class ReportService
 
   private void prepareData() throws Exception
   {
-//    restService.restToRedis();
     postgresService.postgresToRedis();
     elasticsearchService.elasticToRedis();
     ftpService.ftpToRedis();

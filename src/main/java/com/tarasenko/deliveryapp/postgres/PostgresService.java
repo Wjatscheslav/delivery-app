@@ -1,5 +1,7 @@
 package com.tarasenko.deliveryapp.postgres;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import com.tarasenko.deliveryapp.redis.service.WeatherForecastRedisService;
 @Service
 public class PostgresService
 {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(PostgresService.class);
 
   private static final Gson GSON = new Gson();
 
@@ -26,9 +30,11 @@ public class PostgresService
 
   public void postgresToRedis()
   {
+    LOGGER.debug("Start saving data from postgres into refis");
     Iterable<WeatherDocument> weatherForecasts = weatherForecastRepository.findAll();
     weatherForecasts.forEach(weatherForecast ->
         weatherForecastRedisService.saveWeatherForecast(GSON.toJson(weatherForecast.getDocument())));
+    LOGGER.debug("All data was successfully saved");
   }
 
 }
