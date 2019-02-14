@@ -77,7 +77,7 @@ public class ReportService
 
   private void prepareData() throws Exception
   {
-    restService.restToRedis();
+//    restService.restToRedis();
     postgresService.postgresToRedis();
     elasticsearchService.elasticToRedis();
     ftpService.ftpToRedis();

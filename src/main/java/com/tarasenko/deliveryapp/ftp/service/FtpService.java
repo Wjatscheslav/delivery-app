@@ -2,6 +2,7 @@ package com.tarasenko.deliveryapp.ftp.service;
 
 import java.io.InputStream;
 
+import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +36,18 @@ public class FtpService
     {
       ftpClient.connect(ftpClientConfig.getFtpHost(), ftpClientConfig.getFtpPort());
       ftpClient.login(ftpClientConfig.getFtpLogin(), ftpClientConfig.getFtpPassword());
-      InputStream inputStream = ftpClient.retrieveFileStream(ftpClientConfig.getFtpFilePath());
-      ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode jsonNode = objectMapper.readTree(inputStream);
-
-      for (JsonNode jsonNodeEl : jsonNode)
+      ftpClient.changeWorkingDirectory("weather");
+      FTPFile[] files = ftpClient.listFiles();
+      for (FTPFile file : files)
       {
-        weatherForecastRedisService.saveWeatherForecast(jsonNodeEl.asText());
+        InputStream inputStream = ftpClient.retrieveFileStream(file.getName());
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(inputStream);
+
+        for (JsonNode jsonNodeEl : jsonNode)
+        {
+          weatherForecastRedisService.saveWeatherForecast(jsonNodeEl.asText());
+        }
       }
     }
     catch (Exception e)

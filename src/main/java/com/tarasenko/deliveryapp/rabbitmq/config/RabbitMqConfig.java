@@ -15,6 +15,9 @@ public class RabbitMqConfig
   @Value("${rabbitmq.host}")
   private String host;
 
+  @Value("${rabbitmq.port}")
+  private int port;
+
   @Value("${rabbitmq.username}")
   private String username;
 

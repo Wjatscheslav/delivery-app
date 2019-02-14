@@ -32,6 +32,7 @@ public class WeatherForecastRabbitSubscriber
   public void subscribe() throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost(rabbitMqConfig.getHost());
+    factory.setPort(rabbitMqConfig.getPort());
     factory.setUsername(rabbitMqConfig.getUsername());
     factory.setPassword(rabbitMqConfig.getPassword());
     Connection connection = factory.newConnection();

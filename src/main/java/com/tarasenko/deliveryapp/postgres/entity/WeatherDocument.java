@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "weather_document")
+@Table(name = "forecast")
 @Getter
 @Setter
 public class WeatherDocument
@@ -21,6 +21,6 @@ public class WeatherDocument
   @Column(name = "forecast_id")
   private long id;
 
-  @Column(name = "document")
+  @Column(name = "forecast")
   private String document;
 }
